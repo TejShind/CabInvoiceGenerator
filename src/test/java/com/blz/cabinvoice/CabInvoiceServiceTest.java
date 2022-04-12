@@ -35,4 +35,27 @@ public class CabInvoiceServiceTest {
         InvoiceSummery expectedInvoice = new InvoiceSummery(2, 85);
         Assert.assertEquals(expectedInvoice, invoiceSummery);
     }
+
+    @Test
+    public void givenUserID_ShouldReturnInvoiceSummeryForParticularUser() {
+        String userId = "Shamala";
+        Ride[] rides = {new Ride(2.0, 5),
+                new Ride(5.0, 10)};
+        cabInvoiceGenerator.addRide(userId, rides);
+        InvoiceSummery invoiceSummery = cabInvoiceGenerator.getInvoiceSummery(userId);
+        InvoiceSummery expectedInvoice = new InvoiceSummery(2, 85);
+        Assert.assertEquals(expectedInvoice, invoiceSummery);
+    }
+
+    @Test
+    public void givenUserID_ShouldReturnInvoiceSummeryGivenUser() {
+        String userID = "Komal";
+        Ride[] rides = {new Ride(5.0, 15),
+                new Ride(7.0, 50)};
+        cabInvoiceGenerator.addRide(userID, rides);
+        InvoiceSummery invoiceSummery = cabInvoiceGenerator.getInvoiceSummery(userID);
+        InvoiceSummery expectedInvoice = new InvoiceSummery(2, 185);
+        Assert.assertEquals(expectedInvoice, invoiceSummery);
+
+    }
 }
